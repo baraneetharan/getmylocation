@@ -1,33 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-	<script type='text/javascript'>
-    function GetMap() {
-        var map = new Microsoft.Maps.Map('#myMap', {
-            credentials: 'Al_rAdGxqvM6yyObfbhVD_2pUvrxYnM-0wZQfPAkE4PBHA6R3NV6w3mDQG3GfaUa'
-        });
-
-        //Request the user's location
-        navigator.geolocation.getCurrentPosition(function (position) {
-            console.log("latitude: "+position.coords.latitude+" , longitude: "+position.coords.longitude);
-            var loc = new Microsoft.Maps.Location(
-                position.coords.latitude,
-                position.coords.longitude);
-
-            //Add a pushpin at the user's location.
-            var pin = new Microsoft.Maps.Pushpin(loc);
-            map.entities.push(pin);
-
-            //Center the map on the user's location.
-            map.setView({ center: loc, zoom: 15 });
-        });
+<meta charset="utf-8">
+<title>Get Visitor's Location Using HTML5 Geolocation</title>
+<script>
+    function showPosition() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                document.getElementById("result").innerHTML = positionInfo;
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
     }
-    </script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+</script>
 </head>
 <body>
-    <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+    <div id="result">
+        <!--Position information will be inserted here-->
+    </div>
+    <button type="button" onclick="showPosition();">Show Position</button>
 </body>
 </html>
