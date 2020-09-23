@@ -18,9 +18,9 @@ public class Punchdata {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long punchdataid;
 
-    private BigDecimal userlatitude;
-    private BigDecimal userlongitude;
-    private LocalDateTime punchtime;
+    private String userlatitude;
+    private String userlongitude;
+    private String punchtime;
     private String useremail;
     
   public Long getPunchdataid() {
@@ -30,27 +30,27 @@ public class Punchdata {
       this.punchdataid = punchdataid;
   }
 
-  public BigDecimal getUserlatitude() {
+  public String getUserlatitude() {
       return userlatitude;
   }
 
-  public void setUserlatitude(final BigDecimal userlatitude) {
+  public void setUserlatitude(final String userlatitude) {
       this.userlatitude = userlatitude;
   }
 
-  public BigDecimal getUserlongitude() {
+  public String getUserlongitude() {
       return userlongitude;
   }
 
-  public void setUserlongitude(final BigDecimal userlongitude) {
+  public void setUserlongitude(final String userlongitude) {
       this.userlongitude = userlongitude;
   }
 
-  public LocalDateTime getPunchtime() {
+  public String getPunchtime() {
       return punchtime;
   }
 
-  public void setPunchtime(final LocalDateTime punchtime) {
+  public void setPunchtime(final String punchtime) {
       this.punchtime = punchtime;
   }
 
