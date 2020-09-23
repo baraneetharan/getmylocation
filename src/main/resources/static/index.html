@@ -11,6 +11,7 @@
 
         //Request the user's location
         navigator.geolocation.getCurrentPosition(function (position) {
+            console.log("latitude: "+position.coords.latitude+" , longitude: "+position.coords.longitude);
             var loc = new Microsoft.Maps.Location(
                 position.coords.latitude,
                 position.coords.longitude);
