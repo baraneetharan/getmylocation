@@ -15,6 +15,9 @@
                 position.coords.latitude,
                 position.coords.longitude);
 
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                alert(positionInfo);
+
             //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
@@ -28,5 +31,9 @@
 </head>
 <body>
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+    <br>
+    <hr>
+    
+<hr>
 </body>
 </html>
