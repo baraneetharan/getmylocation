@@ -32,6 +32,7 @@ public class PunchdataServiceImp implements PunchdataService {
         t.setUserlongitude(Punchdata.getUserlongitude());
         t.setUseremail(Punchdata.getUseremail());
         t.setPunchtime(Punchdata.getPunchtime());
+        t.setAddress(Punchdata.getAddress());
         return PunchdataRepository.save(t);
     }
 

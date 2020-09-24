@@ -22,11 +22,21 @@ public class Punchdata {
     private String userlongitude;
     private String punchtime;
     private String useremail;
-    
-  public Long getPunchdataid() {
-      return punchdataid;
-  }
-  public void setPunchdataid(final Long punchdataid) {
+    private String address;
+
+    public Long getPunchdataid() {
+        return punchdataid;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPunchdataid(final Long punchdataid) {
       this.punchdataid = punchdataid;
   }
 
