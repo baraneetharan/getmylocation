@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title></title>
     <meta charset="utf-8" />
-	<script type='text/javascript'>
-    function GetMap() {
-        var map = new Microsoft.Maps.Map('#myMap', {
-            credentials: "Al_rAdGxqvM6yyObfbhVD_2pUvrxYnM-0wZQfPAkE4PBHA6R3NV6w3mDQG3GfaUa"
-        });
+    <script type='text/javascript'>
+        function GetMap() {
+            var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: "Al_rAdGxqvM6yyObfbhVD_2pUvrxYnM-0wZQfPAkE4PBHA6R3NV6w3mDQG3GfaUa"
+            });
 
-        //Request the user's location
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var loc = new Microsoft.Maps.Location(
-                position.coords.latitude,
-                position.coords.longitude);
+            //Request the user's location
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var loc = new Microsoft.Maps.Location(
+                    position.coords.latitude,
+                    position.coords.longitude);
 
                 var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
-                alert(positionInfo);
-                document.getElementById("lat").value = positionInfo;
-            //Add a pushpin at the user's location.
-            var pin = new Microsoft.Maps.Pushpin(loc);
-            map.entities.push(pin);
+                // alert(positionInfo);
+                document.getElementById("txtlatitude").value = position.coords.latitude;
+                document.getElementById("txtlongitude").value = position.coords.longitude;
 
-            //Center the map on the user's location.
-            map.setView({ center: loc, zoom: 15 });
-        });
-    }
+                loadMapScenario(position.coords.latitude,position.coords.longitude);
+                //Add a pushpin at the user's location.
+                var pin = new Microsoft.Maps.Pushpin(loc);
+                map.entities.push(pin);
+
+                //Center the map on the user's location.
+                map.setView({ center: loc, zoom: 15 });
+            });
+
+            function loadMapScenario(lat,lon) {
+                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+                Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                    var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                    var reverseGeocodeRequestOptions = {
+                        location: new Microsoft.Maps.Location(lat, lon),
+                        callback: function (answer, userData) {
+                            map.setView({ bounds: answer.bestView });
+                            map.entities.push(new Microsoft.Maps.Pushpin(reverseGeocodeRequestOptions.location));
+                            document.getElementById('printoutPanel').innerHTML =
+                                answer.address.formattedAddress;
+                        }
+                    };
+                    searchManager.reverseGeocode(reverseGeocodeRequestOptions);
+                });
+                
+            }
+        }
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 </head>
+
 <body>
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
     <br>
     <hr>
-<input type="text" name="lat" id="lat">
-<input type="text" name="lon" id="lon">
-<hr>
+    <label for="Latitude"></label>
+    <input type="text" name="txtlatitude" id="txtlatitude">
+    <br>
+    <label for="Longitude"></label>
+    <input type="text" name="txtlongitude" id="txtlongitude">
+    <br>
+    <div id='printoutPanel'></div>
+    <br>
+    <input type="submit" value="Punch">
+    <hr>
 </body>
+
 </html>
