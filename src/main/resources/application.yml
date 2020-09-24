@@ -12,4 +12,4 @@ spring:
       path: /db
   jpa:
     hibernate:
-    ddl-auto: create-drop
+    ddl-auto: update
