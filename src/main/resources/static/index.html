@@ -21,7 +21,7 @@
                 document.getElementById("txtlatitude").value = position.coords.latitude;
                 document.getElementById("txtlongitude").value = position.coords.longitude;
 
-                loadMapScenario(position.coords.latitude,position.coords.longitude);
+                loadMapScenario(position.coords.latitude, position.coords.longitude);
                 //Add a pushpin at the user's location.
                 var pin = new Microsoft.Maps.Pushpin(loc);
                 map.entities.push(pin);
@@ -30,7 +30,7 @@
                 map.setView({ center: loc, zoom: 15 });
             });
 
-            function loadMapScenario(lat,lon) {
+            function loadMapScenario(lat, lon) {
                 var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
                 Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
                     var searchManager = new Microsoft.Maps.Search.SearchManager(map);
@@ -45,8 +45,32 @@
                     };
                     searchManager.reverseGeocode(reverseGeocodeRequestOptions);
                 });
-                
+
             }
+
+
+        }
+        function sendData() {
+            alert("sendData()");
+            fetch("https://getmylocation.herokuapp.com/api/punchdatas/", {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    punchdataid: 0,
+                    punchtime: "string1",
+                    useremail: "string1",
+                    userlatitude: "string1",
+                    userlongitude: "string1"
+                })
+            })
+                .then((response) => {
+                    //do something awesome that makes the world a better place
+                });
         }
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
@@ -64,7 +88,7 @@
     <br>
     <div id='printoutPanel'></div>
     <br>
-    <input type="submit" value="Punch">
+    <input type="submit" onclick="sendData()" value="Punch">
     <hr>
 </body>
 
