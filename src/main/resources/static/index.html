@@ -39,8 +39,9 @@
                         callback: function (answer, userData) {
                             map.setView({ bounds: answer.bestView });
                             map.entities.push(new Microsoft.Maps.Pushpin(reverseGeocodeRequestOptions.location));
-                            document.getElementById('printoutPanel').innerHTML =
+                            document.getElementById('txtaddr').value =
                                 answer.address.formattedAddress;
+
                         }
                     };
                     searchManager.reverseGeocode(reverseGeocodeRequestOptions);
@@ -64,8 +65,8 @@
                     punchdataid: 0,
                     punchtime: "string1",
                     useremail: "string1",
-                    userlatitude: "string1",
-                    userlongitude: "string1"
+                    userlatitude: document.getElementById("txtlatitude").value,
+                    userlongitude: document.getElementById("txtlongitude").value
                 })
             })
                 .then((response) => {
@@ -80,11 +81,15 @@
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
     <br>
     <hr>
-    <label for="Latitude"></label>
+    <label for="Latitude">Latitude</label>
     <input type="text" name="txtlatitude" id="txtlatitude">
     <br>
-    <label for="Longitude"></label>
+    <label for="Longitude">Longitude</label>
     <input type="text" name="txtlongitude" id="txtlongitude">
+    <br>
+    <label for="Address">Address</label>
+    <!-- <input type="text" name="txtaddr" id="txtaddr" width:580px;> -->
+    <input type="text" id="txtaddr" style="font-size: 10pt;  width:500px; ">
     <br>
     <div id='printoutPanel'></div>
     <br>
