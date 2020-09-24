@@ -64,7 +64,8 @@
                 body: JSON.stringify({
                     punchdataid: 0,
                     punchtime: new Date().toDateString()+" "+new Date().toLocaleTimeString(),
-                    useremail: document.getElementById("txtaddr").value,
+                    address: document.getElementById("txtaddr").value,
+                    useremail: document.getElementById("txtuser").value,
                     userlatitude: document.getElementById("txtlatitude").value,
                     userlongitude: document.getElementById("txtlongitude").value
                 })
@@ -80,7 +81,10 @@
 <body>
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
     <br>
-    <hr>
+    <hr>    
+    <label for="user">user</label>
+    <input type="text" name="txtuser" id="txtuser" value="Test User">
+    <br>
     <label for="Latitude">Latitude</label>
     <input type="text" name="txtlatitude" id="txtlatitude">
     <br>
