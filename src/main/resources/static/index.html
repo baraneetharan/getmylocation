@@ -63,8 +63,8 @@
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     punchdataid: 0,
-                    punchtime: "string1",
-                    useremail: "string1",
+                    punchtime: new Date().toDateString()+" "+new Date().toLocaleTimeString(),
+                    useremail: document.getElementById("txtaddr").value,
                     userlatitude: document.getElementById("txtlatitude").value,
                     userlongitude: document.getElementById("txtlongitude").value
                 })
